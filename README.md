@@ -2,6 +2,10 @@
 
 An event controller that allows you to add callbacks to a list and have them fire when the event is dispatched.
 
+Install it with ```npm i eventcontrol```
+
+https://www.npmjs.com/package/eventcontrol
+
 ## Usage
 
 NodeJS example
