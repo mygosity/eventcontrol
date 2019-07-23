@@ -33,7 +33,7 @@ class SomeOtherClass {
 Using it like this should show you what options you have with regards to passing arguments (which are all optional).
 Note the order of the arguments received in the exampleCallback.
 
-I've also provided an exmaple from a react project below. This has a nice use case when you need an event to fire
+I've also provided an example from a react project below. This has a nice use case when you need an event to fire
 without actually changing any props and you don't want to add too much code to hook up something like redux.
 
 ```javascript
