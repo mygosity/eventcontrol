@@ -10,12 +10,12 @@ NodeJS example
 //in one class file
 const eventcontrol = require("eventcontrol");
 class Example {
-  exampleCallback(arg1, arg2, optionalArg) {
+  exampleCallback(optional, arg1, arg2) {
     console.log("exampleCallback fired!", this, arg1, arg2);
   }
   someOtherFunction() {
     //hook up that callback to this event string 'EVENT_FIRED'
-    eventcontrol.add("EVENT_FIRED", someCallback, this, "optionalArg");
+    eventcontrol.add("EVENT_FIRED", someCallback, this, optional);
   }
 }
 ```
@@ -31,8 +31,9 @@ class SomeOtherClass {
 ```
 
 Using it like this should show you what options you have with regards to passing arguments (which are all optional).
+Note the order of the arguments received in the exampleCallback.
 
-I've also provided an exmaple from a react project. This has a nice use case when you need an event to fire
+I've also provided an exmaple from a react project below. This has a nice use case when you need an event to fire
 without actually changing any props and you don't want to add too much code to hook up something like redux.
 
 ```javascript
