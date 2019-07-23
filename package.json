@@ -1,0 +1,25 @@
+{
+  "name": "eventcontrol",
+  "version": "1.0.0",
+  "description": "An event controller that allows you to add callbacks to a list and have them fire when an event is dispatched.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mygosity/eventcontrol.git"
+  },
+  "keywords": [
+    "event",
+    "listener",
+    "controller",
+    "manager"
+  ],
+  "author": "mygosity",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mygosity/eventcontrol/issues"
+  },
+  "homepage": "https://github.com/mygosity/eventcontrol#readme"
+}
