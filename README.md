@@ -8,7 +8,7 @@ https://www.npmjs.com/package/eventcontrol
 
 ## Usage
 
-NodeJS example
+### NodeJS example
 
 ```javascript
 //in one class file
@@ -40,6 +40,7 @@ Note the order of the arguments received in the exampleCallback.
 I've also provided an example from a react project below. This has a nice use case when you need an event to fire
 without actually changing any props and you don't want to add too much code to hook up something like redux.
 
+### ReactJS example
 ```javascript
 import eventcontrol from "eventcontrol";
 import { eventTypes } from "../events";
