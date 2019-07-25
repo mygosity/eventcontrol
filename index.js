@@ -5,7 +5,7 @@ function EventControl() {
    * Calling this will force all callbacks listening to the eventId to fire
    * along with any arguments you've specified in both the addEventListener event and this one
    * @param {string} eventId a unique string which triggers all callbacks listening to the id
-   * @param  {...any} args optional arguments that are added to the callback arguments
+   * @param {...any} args optional arguments that are added to the callback arguments
    */
   this.emit = function(eventId, ...args) {
     const eventList = registeredEvents[eventId];
@@ -27,13 +27,17 @@ function EventControl() {
     if (registeredEvents[eventId] === undefined) {
       registeredEvents[eventId] = [];
     }
-    registeredEvents[eventId].push({
+    const list = registeredEvents[eventId];
+    const index = registeredEvents[eventId].findIndex(
+      ref => ref.callback === callback
+    );
+    registeredEvents[eventId][index > -1 ? index : list.length] = {
       event: function(...wrappedArgument) {
         callback.call(ctx, ...args, ...wrappedArgument);
       },
       //stored for reference removal in remove
       callback
-    });
+    };
   };
 
   /**
@@ -47,6 +51,7 @@ function EventControl() {
       for (let i = eventList.length - 1; i >= 0; --i) {
         if (callback === eventList[i].callback) {
           eventList.splice(i, 1);
+          break;
         }
       }
       if (eventList.length === 0) {
