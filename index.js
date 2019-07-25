@@ -5,7 +5,7 @@ function EventControl() {
    * Calling this will force all callbacks listening to the eventId to fire
    * along with any arguments you've specified in both the addEventListener event and this one
    * @param {string} eventId a unique string which triggers all callbacks listening to the id
-   * @param  {...any} args optional arguments that are added to the callback arguments
+   * @param {...any} args optional arguments that are added to the callback arguments
    */
   this.emit = function(eventId, ...args) {
     const eventList = registeredEvents[eventId];
