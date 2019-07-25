@@ -2,11 +2,25 @@
 
 An event controller that allows you to add callbacks to a list and have them fire when the event is dispatched.
 
-Install it with ```npm i eventcontrol```
+Install it with `npm i eventcontrol`
 
 https://www.npmjs.com/package/eventcontrol
 
 ## Usage
+
+Add an event listener by calling
+
+```javascript
+eventcontrol.add("EVENT_NAME", functionToCall);
+```
+
+functionToCall will fire when eventcontrol is emitted
+
+```javascript
+eventcontrol.emit("EVENT_NAME");
+```
+
+You can add extra arguments, or extra functions to listen to the same event. See examples below.
 
 ### NodeJS example
 
@@ -19,7 +33,7 @@ class Example {
   }
   someOtherFunction() {
     //hook up that callback to this event string 'EVENT_FIRED'
-    eventcontrol.add("EVENT_FIRED", someCallback, this, optional);
+    eventcontrol.add("EVENT_FIRED", this.exampleCallback, this, optional);
   }
 }
 ```
@@ -41,6 +55,7 @@ I've also provided an example from a react project below. This has a nice use ca
 without actually changing any props and you don't want to add too much code to hook up something like redux.
 
 ### ReactJS example
+
 ```javascript
 import eventcontrol from "eventcontrol";
 import { eventTypes } from "../events";

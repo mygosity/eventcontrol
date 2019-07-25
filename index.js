@@ -27,13 +27,15 @@ function EventControl() {
     if (registeredEvents[eventId] === undefined) {
       registeredEvents[eventId] = [];
     }
-    registeredEvents[eventId].push({
+    const list = registeredEvents[eventId];
+    const index = registeredEvents[eventId].findIndex(ref => ref === callback);
+    registeredEvents[eventId][index > -1 ? index : list.length] = {
       event: function(...wrappedArgument) {
         callback.call(ctx, ...args, ...wrappedArgument);
       },
       //stored for reference removal in remove
       callback
-    });
+    };
   };
 
   /**
@@ -47,6 +49,7 @@ function EventControl() {
       for (let i = eventList.length - 1; i >= 0; --i) {
         if (callback === eventList[i].callback) {
           eventList.splice(i, 1);
+          break;
         }
       }
       if (eventList.length === 0) {
