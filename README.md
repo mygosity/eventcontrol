@@ -2,9 +2,9 @@
 
 An event controller that allows you to add callbacks to a list and have them fire when the event is dispatched.
 
-Install it with `npm i eventcontrol`
-
-https://www.npmjs.com/package/eventcontrol
+[![npm version](https://img.shields.io/npm/v/eventcontrol.svg?color=%232c8ebb&style=flat-square)](https://www.npmjs.com/package/eventcontrol)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/eventcontrol.svg?color=rgb%28113%2C%20138%2C%20240%29&label=gzipped&style=flat-square)
+[![MIT license](https://img.shields.io/npm/l/eventcontrol.svg?color=%233DA639&style=flat-square)](http://opensource.org/licenses/MIT)
 
 ## Usage
 
