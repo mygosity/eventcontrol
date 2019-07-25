@@ -18,6 +18,7 @@ function EventControl() {
 
   /**
    * Add an event listener to dispatch from anywhere within the application
+   * Adding the same callback to an event registered before will replace it with the latest
    * @param {string} eventId a unique string which triggers the callback
    * @param {function} callback function that is called when the event id is dispatched
    * @param {object} ctx an optional reference to bind 'this' to when the callback is fired
@@ -28,10 +29,8 @@ function EventControl() {
       registeredEvents[eventId] = [];
     }
     const list = registeredEvents[eventId];
-    const index = registeredEvents[eventId].findIndex(
-      ref => ref.callback === callback
-    );
-    registeredEvents[eventId][index > -1 ? index : list.length] = {
+    const index = list.findIndex(ref => ref.callback === callback);
+    list[index > -1 ? index : list.length] = {
       event: function(...wrappedArgument) {
         callback.call(ctx, ...args, ...wrappedArgument);
       },

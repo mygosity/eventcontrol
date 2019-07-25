@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.1
+
+- added typescript definition
+- shortened add code slightly and added further detail to jsdoc
+
 ## v1.1.0
 
 - eventcontrol.add now checks for the existence of a callback and prevents it being added twice
