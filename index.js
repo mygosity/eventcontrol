@@ -28,7 +28,9 @@ function EventControl() {
       registeredEvents[eventId] = [];
     }
     const list = registeredEvents[eventId];
-    const index = registeredEvents[eventId].findIndex(ref => ref === callback);
+    const index = registeredEvents[eventId].findIndex(
+      ref => ref.callback === callback
+    );
     registeredEvents[eventId][index > -1 ? index : list.length] = {
       event: function(...wrappedArgument) {
         callback.call(ctx, ...args, ...wrappedArgument);
