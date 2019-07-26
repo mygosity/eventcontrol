@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2
+
+- fixed typescript definition
+
 ## v1.1.1
 
 - added typescript definition
