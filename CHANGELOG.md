@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.3
+
+- added more descriptive text to readme
+
 ## v1.1.2
 
 - fixed typescript definition
