@@ -1,14 +1,13 @@
-let registeredEvents = {};
-
 function EventControl() {
+  this.registeredEvents = {};
   /**
    * Calling this will force all callbacks listening to the eventId to fire
    * along with any arguments you've specified in both the addEventListener event and this one
    * @param {string} eventId a unique string which triggers all callbacks listening to the id
    * @param {...any} args optional arguments that are added to the callback arguments
    */
-  this.emit = function(eventId, ...args) {
-    const eventList = registeredEvents[eventId];
+  this.emit = function (eventId, ...args) {
+    const eventList = this.registeredEvents[eventId];
     if (eventList !== undefined) {
       for (let i = 0; i < eventList.length; ++i) {
         eventList[i].event(...args);
@@ -24,14 +23,14 @@ function EventControl() {
    * @param {object} ctx an optional reference to bind 'this' to when the callback is fired
    * @param {...any} args additional optional arguments to pass to the callback
    */
-  this.add = function(eventId, callback, ctx, ...args) {
-    if (registeredEvents[eventId] === undefined) {
-      registeredEvents[eventId] = [];
+  this.add = function (eventId, callback, ctx, ...args) {
+    if (this.registeredEvents[eventId] === undefined) {
+      this.registeredEvents[eventId] = [];
     }
-    const list = registeredEvents[eventId];
-    const index = list.findIndex(ref => ref.callback === callback);
+    const list = this.registeredEvents[eventId];
+    const index = list.findIndex((ref) => ref.callback === callback);
     list[index > -1 ? index : list.length] = {
-      event: function(...wrappedArgument) {
+      event: function (...wrappedArgument) {
         callback.call(ctx, ...args, ...wrappedArgument);
       },
       //stored for reference removal in remove
@@ -44,8 +43,8 @@ function EventControl() {
    * @param {string} eventId a unique string which triggers the callback
    * @param {function} callback function that is called when the event id is dispatched
    */
-  this.remove = function(eventId, callback) {
-    const eventList = registeredEvents[eventId];
+  this.remove = function (eventId, callback) {
+    const eventList = this.registeredEvents[eventId];
     if (eventList !== undefined) {
       for (let i = eventList.length - 1; i >= 0; --i) {
         if (callback === eventList[i].callback) {
@@ -54,16 +53,16 @@ function EventControl() {
         }
       }
       if (eventList.length === 0) {
-        delete registeredEvents[eventId];
+        delete this.registeredEvents[eventId];
       }
     }
   };
 
-  this.dispose = function() {
-    for (let eventId in registeredEvents) {
-      registeredEvents[eventId] = null;
+  this.dispose = function () {
+    for (let eventId in this.registeredEvents) {
+      this.registeredEvents[eventId] = null;
     }
-    registeredEvents = {};
+    this.registeredEvents = {};
   };
 }
 
