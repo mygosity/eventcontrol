@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.0
+
+- [BreakingChange] exported the class definition of EventController and changed the default export
+- dispose and remove now also null the callbacks so there's no lingering references to functions
+- fixed the definition file attached to eventcontrol class for typescript definitions
+
 ## v1.1.3
 
 - added more descriptive text to readme

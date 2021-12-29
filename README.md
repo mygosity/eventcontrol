@@ -17,7 +17,7 @@ npm i eventcontrol
 Import using
 
 ```javascript
-import eventcontrol from "eventcontrol";
+import { eventcontrol } from "eventcontrol";
 ```
 
 Add an event listener by calling
@@ -60,21 +60,34 @@ Additional notes:
 
 ```javascript
 //in one class file
-const eventcontrol = require("eventcontrol");
+const eventcontrol = require("eventcontrol").eventcontrol;
 class Example {
   exampleCallback(optional, optional2, arg1, arg2) {
-    console.log("exampleCallback fired!", this, optional, optional2, arg1, arg2);
+    console.log(
+      "exampleCallback fired!",
+      this,
+      optional,
+      optional2,
+      arg1,
+      arg2
+    );
   }
   someOtherFunction() {
     //hook up that callback to this event string 'EVENT_FIRED'
-    eventcontrol.add("EVENT_FIRED", this.exampleCallback, this, optional, optional2);
+    eventcontrol.add(
+      "EVENT_FIRED",
+      this.exampleCallback,
+      this,
+      optional,
+      optional2
+    );
   }
 }
 ```
 
 ```javascript
 //in another class file
-const eventcontrol = require("eventcontrol");
+const eventcontrol = require("eventcontrol").eventcontrol;
 class SomeOtherClass {
   doingSomething() {
     eventcontrol.emit("EVENT_FIRED", "arg1", "arg2");
@@ -92,7 +105,7 @@ without actually changing any props and you don't want to add too much code to h
 
 ```javascript
 import React from "react";
-import eventcontrol from "eventcontrol";
+import { eventcontrol } from "eventcontrol";
 import { eventTypes } from "../events";
 
 class SomeComponent extends React.Component {
@@ -110,7 +123,7 @@ class SomeComponent extends React.Component {
 
 ```javascript
 import React from "react";
-import eventcontrol from "eventcontrol";
+import { eventcontrol } from "eventcontrol";
 import { eventTypes } from "../events";
 
 class OtherComponent extends React.Component {

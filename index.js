@@ -34,7 +34,7 @@ function EventControl() {
         callback.call(ctx, ...args, ...wrappedArgument);
       },
       //stored for reference removal in remove
-      callback
+      callback,
     };
   };
 
@@ -48,6 +48,8 @@ function EventControl() {
     if (eventList !== undefined) {
       for (let i = eventList.length - 1; i >= 0; --i) {
         if (callback === eventList[i].callback) {
+          eventList[i].callback = null;
+          eventList[i].event = null;
           eventList.splice(i, 1);
           break;
         }
@@ -59,13 +61,17 @@ function EventControl() {
   };
 
   this.dispose = function () {
-    for (let eventId in this.registeredEvents) {
-      this.registeredEvents[eventId] = null;
+    for (const eventId in this.registeredEvents) {
+      const eventList = this.registeredEvents[eventId];
+      for (let i = 0; i < eventList.length; ++i) {
+        delete eventList[i].event;
+        delete eventList[i].callback;
+      }
+      delete this.registeredEvents[eventId];
     }
     this.registeredEvents = {};
   };
 }
 
 const eventcontrol = new EventControl();
-module.exports = eventcontrol;
-module.exports.default = eventcontrol;
+module.exports = { eventcontrol, EventControl };
